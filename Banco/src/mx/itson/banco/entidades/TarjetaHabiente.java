@@ -11,12 +11,13 @@ import java.util.Date;
  *
  * @author Enrique Gonzalez Leyva
  */
-public class Cliente {
+public class TarjetaHabiente {
     
     private int id;
     private String nombre;
     private Date fechaNacimiento;
     private String correo;
+    private double credito;
 
     /**
      * @return the id
@@ -72,6 +73,20 @@ public class Cliente {
      */
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    /**
+     * @return the credito
+     */
+    public double getCredito() {
+        return credito;
+    }
+
+    /**
+     * @param credito the credito to set
+     */
+    public void setCredito(double credito) {
+        this.credito = credito;
     }
     
 }
