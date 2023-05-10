@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.itson.banco.entidades;
-
-import java.util.List;
+package mx.itson.banco.enumeradores;
 
 /**
  *
  * @author enri0
  */
-public class Movimiento {
+public enum TipoMovimiento {
     
-    private int id;
-    private List<EstadoCuenta> cuentas;
 }

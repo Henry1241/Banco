@@ -5,10 +5,20 @@
  */
 package mx.itson.banco.entidades;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author enri0
  */
 public class EstadoCuenta {
     
+    private int id;
+    private List<Movimiento> movimientos;
+    private Tarjeta tarjeta;
+    private List<TarjetaHabiente> clientes;
+    private Date fecha;
+    private Compra tienda;
+    private Compra monto;
 }

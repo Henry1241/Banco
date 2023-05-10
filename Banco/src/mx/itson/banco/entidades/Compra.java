@@ -5,10 +5,18 @@
  */
 package mx.itson.banco.entidades;
 
+import java.util.Date;
+import mx.itson.banco.enumeradores.TipoMovimiento;
+
 /**
  *
  * @author enri0
  */
 public class Compra {
-    
+ 
+    private int id;
+    private Date fecha;
+    private String nombreTienda;
+    private double cantidadPagar;
+    private TipoMovimiento tipo;
 }
