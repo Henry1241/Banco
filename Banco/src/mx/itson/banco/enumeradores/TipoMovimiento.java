@@ -11,4 +11,5 @@ package mx.itson.banco.enumeradores;
  */
 public enum TipoMovimiento {
     
+    ABONO, PAGO
 }
