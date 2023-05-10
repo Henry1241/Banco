@@ -19,6 +19,7 @@ public class EstadoCuenta {
     private Tarjeta tarjeta;
     private List<TarjetaHabiente> clientes;
     private Date fecha;
+    private Date fechaCorte;
     private Compra tienda;
     private Compra monto;
 
@@ -118,5 +119,19 @@ public class EstadoCuenta {
      */
     public void setMonto(Compra monto) {
         this.monto = monto;
+    }
+
+    /**
+     * @return the fechaCorte
+     */
+    public Date getFechaCorte() {
+        return fechaCorte;
+    }
+
+    /**
+     * @param fechaCorte the fechaCorte to set
+     */
+    public void setFechaCorte(Date fechaCorte) {
+        this.fechaCorte = fechaCorte;
     }
 }
