@@ -22,7 +22,7 @@ public class TarjetaHabienteDAO {
        try{
            Connection conexion = Conexion.obtener();
            Statement statement = conexion.createStatement();
-           ResultSet rs = statement.executeQuery("SELECT * from vw_artista");
+           ResultSet rs = statement.executeQuery("SELECT * from tarjeta_habiente");
            while(rs.next()){
                TarjetaHabiente th = new TarjetaHabiente();
                th.setId(rs.getInt(1));

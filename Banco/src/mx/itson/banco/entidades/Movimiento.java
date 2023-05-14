@@ -7,6 +7,7 @@ package mx.itson.banco.entidades;
 
 import java.util.Date;
 import java.util.List;
+import mx.itson.banco.enumeradores.TipoMovimiento;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Movimiento {
     private double cargo;
     private Date fecha;
     private List<EstadoCuenta> cuentas;
+    private TipoMovimiento tipo;
 
     /**
      * @return the id
@@ -88,5 +90,19 @@ public class Movimiento {
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public TipoMovimiento getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(TipoMovimiento tipo) {
+        this.tipo = tipo;
     }
 }
