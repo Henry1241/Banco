@@ -29,7 +29,9 @@ public class TarjetaHabienteDAO {
                th.setNombre(rs.getString(2));
                th.setFechaNacimiento(rs.getDate(3));
                th.setCorreo(rs.getString(4));
-               th.setCredito(rs.getDouble(5));
+               th.setCurp(rs.getString(5));
+               th.setRfc(rs.getString(6));
+               th.setDireccion(rs.getString(7));
 
 
 

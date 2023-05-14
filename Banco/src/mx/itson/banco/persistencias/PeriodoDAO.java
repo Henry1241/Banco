@@ -28,8 +28,6 @@ public class PeriodoDAO {
                Periodo p = new Periodo();
                p.setId(rs.getInt(1));
                p.setMes(rs.getString(2));
-               p.setCobro(rs.getDouble(3));
-
 
               
                
