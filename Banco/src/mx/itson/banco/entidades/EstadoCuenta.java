@@ -23,6 +23,7 @@ public class EstadoCuenta {
     private double cargo;
     private Date inicioPeriodo;
     private Date fechaCorte;
+    private Date fechaPago;
     private double saldoFinal;
     private Periodo mes;
 
@@ -178,5 +179,19 @@ public class EstadoCuenta {
      */
     public void setMes(Periodo mes) {
         this.mes = mes;
+    }
+
+    /**
+     * @return the fechaPago
+     */
+    public Date getFechaPago() {
+        return fechaPago;
+    }
+
+    /**
+     * @param fechaPago the fechaPago to set
+     */
+    public void setFechaPago(Date fechaPago) {
+        this.fechaPago = fechaPago;
     }
 }

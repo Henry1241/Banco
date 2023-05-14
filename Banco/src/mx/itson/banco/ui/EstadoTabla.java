@@ -5,6 +5,11 @@
  */
 package mx.itson.banco.ui;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.banco.entidades.EstadoCuenta;
+import mx.itson.banco.persistencias.EstadoCuentaDAO;
+
 /**
  *
  * @author enri0
@@ -27,6 +32,14 @@ public class EstadoTabla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEstado = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblTarjetaH = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        cmbPeriodo = new javax.swing.JComboBox<>();
+        btnConsulta = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -34,24 +47,122 @@ public class EstadoTabla extends javax.swing.JFrame {
             }
         });
 
+        tblEstado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "id", "Saldo Anterior", "Abono", "Cargo", "Inicio del periodo", "Fecha de corte", "Fecha de pago", "Saldo final"
+            }
+        ));
+        jScrollPane1.setViewportView(tblEstado);
+
+        tblTarjetaH.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "id", "Nombre", "Fecha de nacimiento", "CURP", "RFC", "Direccion"
+            }
+        ));
+        jScrollPane2.setViewportView(tblTarjetaH);
+
+        jLabel1.setText("Elegir periodo");
+
+        cmbPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPeriodoActionPerformed(evt);
+            }
+        });
+
+        btnConsulta.setText("Consultar");
+        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 114, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnConsulta)
+                        .addGap(72, 72, 72))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsulta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPeriodoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPeriodoActionPerformed
+
+    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+        // TODO add your handling code here:
+        cargar();
+    }//GEN-LAST:event_btnConsultaActionPerformed
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        cargarFechas();
     }//GEN-LAST:event_formWindowOpened
-
+    public void cargar(){
+        List<EstadoCuenta> estado = EstadoCuentaDAO.obtenerTodos();
+        DefaultTableModel model = (DefaultTableModel) tblEstado.getModel();
+        model.setRowCount(0);
+        for (EstadoCuenta e : estado) {
+            model.addRow(new Object[]{
+                e.getId(),
+                e.getMovimientos().get(NORMAL).getDescripcion(),
+                e.getSaldoAnterior(),
+                e.getAbono(),
+                e.getCargo(),
+                e.getInicioPeriodo(),
+                e.getFechaCorte(),
+                e.getFechaPago(),
+                e.getSaldoFinal(),
+                e.getMes().getMes()
+            });
+            
+        }
+    }
+     public void cargarFechas() {
+        List<EstadoCuenta> inicio = EstadoCuentaDAO.obtenerTodos();
+        for(EstadoCuenta f: inicio){
+            cmbPeriodo.addItem(f);
+  }
+}
     /**
      * @param args the command line arguments
      */
@@ -88,5 +199,12 @@ public class EstadoTabla extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsulta;
+    private javax.swing.JComboBox<EstadoCuenta> cmbPeriodo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblEstado;
+    private javax.swing.JTable tblTarjetaH;
     // End of variables declaration//GEN-END:variables
 }

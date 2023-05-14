@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -18,11 +19,16 @@ import java.util.List;
 public class EstadoCuentaDAO {
     private Connection conexion; 
     
-    public EstadoCuenta obtenerPorId(int id) {
-        String query = "SELECT * FROM estado_cuenta WHERE id = ?";
-        try (PreparedStatement statement = conexion.prepareStatement(query)) {
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
+    public static EstadoCuenta obtenerPorId(int id) {
+        EstadoCuenta estado = new EstadoCuenta();
+        try {
+           Connection conexion = Conexion.obtener();
+           Statement statement = conexion.createStatement();
+           ResultSet resultSet = statement.executeQuery("SELECT * FROM estado_cuenta WHERE id = ?");
+           while (resultSet.next()) {
+               estado.setId(resultSet.getInt(1));
+           }
+           
             if (resultSet.next()) {
                 return obtenerPorId(id);
             }
@@ -32,12 +38,15 @@ public class EstadoCuentaDAO {
         return null;
     }
 
-    public List<EstadoCuenta> obtenerTodos() {
+    public static List<EstadoCuenta> obtenerTodos() {
         List<EstadoCuenta> estadoCuentas = new ArrayList<>();
         String query = "SELECT * FROM estado_cuenta";
-        try (PreparedStatement statement = conexion.prepareStatement(query)) {
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
+        try {
+           Connection conexion = Conexion.obtener();
+           Statement statement = conexion.createStatement();
+           ResultSet rs = statement.executeQuery("SELECT * from estado_cuenta");
+            
+            while(rs.next()){
                 estadoCuentas.add((EstadoCuenta) obtenerTodos());
             }
         } catch (SQLException ex) {
