@@ -28,9 +28,7 @@ public class PeriodoDAO {
                Periodo p = new Periodo();
                p.setId(rs.getInt(1));
                p.setMes(rs.getString(2));
-
-              
-               
+ 
                periodos.add(p);
            }
        } catch(Exception ex){

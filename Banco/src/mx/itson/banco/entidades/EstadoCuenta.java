@@ -28,7 +28,7 @@ public class EstadoCuenta {
 
     /**
      * @return the id
-     */
+     */ 
     public int getId() {
         return id;
     }
