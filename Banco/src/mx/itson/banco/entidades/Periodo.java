@@ -13,7 +13,6 @@ public class Periodo {
     
     private int id;
     private String mes;
-    private double cobro;
 
     /**
      * @return the id
@@ -43,18 +42,5 @@ public class Periodo {
         this.mes = mes;
     }
 
-    /**
-     * @return the cobro
-     */
-    public double getCobro() {
-        return cobro;
-    }
-
-    /**
-     * @param cobro the cobro to set
-     */
-    public void setCobro(double cobro) {
-        this.cobro = cobro;
-    }
     
 }

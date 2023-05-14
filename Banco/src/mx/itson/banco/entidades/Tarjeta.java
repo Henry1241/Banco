@@ -16,8 +16,9 @@ public class Tarjeta {
     private int id;
     private String numeroTarjeta;
     private int cvv;
-    private Date fechaVencimiento;
     private double interes;
+    private Date fechaVencimiento;
+    private TarjetaHabiente cliente;
 
     /**
      * @return the id
@@ -87,6 +88,20 @@ public class Tarjeta {
      */
     public void setInteres(double interes) {
         this.interes = interes;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public TarjetaHabiente getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(TarjetaHabiente cliente) {
+        this.cliente = cliente;
     }
     
 }

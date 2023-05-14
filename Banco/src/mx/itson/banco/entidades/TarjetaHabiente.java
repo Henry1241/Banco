@@ -17,7 +17,9 @@ public class TarjetaHabiente {
     private String nombre;
     private Date fechaNacimiento;
     private String correo;
-    private double credito;
+    private String curp;
+    private String rfc;
+    private String direccion;
 
     /**
      * @return the id
@@ -76,17 +78,45 @@ public class TarjetaHabiente {
     }
 
     /**
-     * @return the credito
+     * @return the curp
      */
-    public double getCredito() {
-        return credito;
+    public String getCurp() {
+        return curp;
     }
 
     /**
-     * @param credito the credito to set
+     * @param curp the curp to set
      */
-    public void setCredito(double credito) {
-        this.credito = credito;
+    public void setCurp(String curp) {
+        this.curp = curp;
     }
-    
+
+    /**
+     * @return the rfc
+     */
+    public String getRfc() {
+        return rfc;
+    }
+
+    /**
+     * @param rfc the rfc to set
+     */
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
 }

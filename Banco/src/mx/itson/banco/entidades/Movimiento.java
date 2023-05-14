@@ -5,6 +5,7 @@
  */
 package mx.itson.banco.entidades;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +15,9 @@ import java.util.List;
 public class Movimiento {
     
     private int id;
+    private String descripcion;
+    private double cargo;
+    private Date fecha;
     private List<EstadoCuenta> cuentas;
 
     /**
@@ -42,5 +46,47 @@ public class Movimiento {
      */
     public void setCuentas(List<EstadoCuenta> cuentas) {
         this.cuentas = cuentas;
+    }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    /**
+     * @return the cargo
+     */
+    public double getCargo() {
+        return cargo;
+    }
+
+    /**
+     * @param cargo the cargo to set
+     */
+    public void setCargo(double cargo) {
+        this.cargo = cargo;
+    }
+
+    /**
+     * @return the fecha
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }
