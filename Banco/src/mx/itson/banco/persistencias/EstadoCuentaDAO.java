@@ -40,17 +40,26 @@ public class EstadoCuentaDAO {
 
     public static List<EstadoCuenta> obtenerTodos() {
         List<EstadoCuenta> estadoCuentas = new ArrayList<>();
-        String query = "SELECT * FROM estado_cuenta";
         try {
            Connection conexion = Conexion.obtener();
            Statement statement = conexion.createStatement();
            ResultSet rs = statement.executeQuery("SELECT * from estado_cuenta");
-            
             while(rs.next()){
-                estadoCuentas.add((EstadoCuenta) obtenerTodos());
+                EstadoCuenta e = new EstadoCuenta();
+                e.setId(rs.getInt(1));
+                e.setSaldoAnterior(rs.getDouble(5));
+                e.setAbono(rs.getDouble(6));
+                e.setCargo(rs.getDouble(7));
+                e.setInicioPeriodo(rs.getDate(8));
+                e.setFechaCorte(rs.getDate(9));
+                e.setFechaPago(rs.getDate(10));
+                e.setSaldoFinal(rs.getDouble(11));
+                
+                
+                estadoCuentas.add(e);
             }
         } catch (SQLException ex) {
-             System.err.print("Ocurrio un error al obtener usuario: " + ex.getMessage()); 
+             System.err.print("Ocurrio un error al obtener los datos: " + ex.getMessage()); 
         }
         return estadoCuentas;
     }

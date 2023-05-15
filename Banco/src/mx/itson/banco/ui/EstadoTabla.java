@@ -121,6 +121,8 @@ public class EstadoTabla extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        cmbPeriodo.getAccessibleContext().setAccessibleName("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -140,11 +142,11 @@ public class EstadoTabla extends javax.swing.JFrame {
     public void cargar(){
         List<EstadoCuenta> estado = EstadoCuentaDAO.obtenerTodos();
         DefaultTableModel model = (DefaultTableModel) tblEstado.getModel();
+        EstadoCuenta inicio = (EstadoCuenta)cmbPeriodo.getSelectedItem();
         model.setRowCount(0);
         for (EstadoCuenta e : estado) {
             model.addRow(new Object[]{
                 e.getId(),
-                e.getMovimientos().get(NORMAL).getDescripcion(),
                 e.getSaldoAnterior(),
                 e.getAbono(),
                 e.getCargo(),
@@ -152,13 +154,12 @@ public class EstadoTabla extends javax.swing.JFrame {
                 e.getFechaCorte(),
                 e.getFechaPago(),
                 e.getSaldoFinal(),
-                e.getMes().getMes()
             });
             
         }
     }
      public void cargarFechas() {
-        List<EstadoCuenta> inicio = EstadoCuentaDAO.obtenerTodos();
+        List<EstadoCuenta> inicio = (List<EstadoCuenta>) EstadoCuentaDAO.obtenerTodos();
         for(EstadoCuenta f: inicio){
             cmbPeriodo.addItem(f);
   }
