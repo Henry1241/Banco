@@ -117,8 +117,8 @@ public class EstadoTabla extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
         );
 
         cmbPeriodo.getAccessibleContext().setAccessibleName("");
@@ -163,7 +163,6 @@ public class EstadoTabla extends javax.swing.JFrame {
      public void cargarFechas() {
         List<EstadoCuenta> inicio = (List<EstadoCuenta>) EstadoCuentaDAO.obtenerTodos();
         for(EstadoCuenta i: inicio){
-        i.getInicioPeriodo().toString();
             cmbPeriodo.addItem(i);
   }
 }

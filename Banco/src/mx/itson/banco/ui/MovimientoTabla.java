@@ -5,6 +5,13 @@
  */
 package mx.itson.banco.ui;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.banco.entidades.EstadoCuenta;
+import mx.itson.banco.entidades.Movimiento;
+import mx.itson.banco.persistencias.EstadoCuentaDAO;
+import mx.itson.banco.persistencias.MovimientoDAO;
+
 /**
  *
  * @author enri0
@@ -35,16 +42,21 @@ public class MovimientoTabla extends javax.swing.JFrame {
         btnAnadir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         tblMovimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Descripcion", "Cargo", "Fecha", "Cuenta", "Tipo de Movimiento"
+                "id", "Descripcion", "Cargo", "Fecha", "Tipo de Movimiento", "Intereses"
             }
         ));
         jScrollPane1.setViewportView(tblMovimiento);
@@ -110,6 +122,29 @@ public class MovimientoTabla extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        cargar();
+        tblMovimiento.removeColumn(tblMovimiento.getColumnModel().getColumn(0));
+    }//GEN-LAST:event_formWindowOpened
+
+    public void cargar() {
+        List<Movimiento> movimiento = MovimientoDAO.obtenerTodos();
+        DefaultTableModel model = (DefaultTableModel) tblMovimiento.getModel();
+        model.setRowCount(0);
+        for (Movimiento m : movimiento) {
+            model.addRow(new Object[]{
+                m.getId(),
+                m.getDescripcion(),
+                m.getCargo(),
+                m.getFecha(),
+                m.getTipo(),
+                m.getIntereses()
+
+            });
+        }
+    }
 
     /**
      * @param args the command line arguments

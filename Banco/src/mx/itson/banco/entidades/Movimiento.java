@@ -19,8 +19,9 @@ public class Movimiento {
     private String descripcion;
     private double cargo;
     private Date fecha;
-    private List<EstadoCuenta> cuentas;
     private TipoMovimiento tipo;
+    private List<EstadoCuenta> cuentas;
+    private double intereses;
 
     /**
      * @return the id
@@ -104,5 +105,19 @@ public class Movimiento {
      */
     public void setTipo(TipoMovimiento tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * @return the intereses
+     */
+    public double getIntereses() {
+        return intereses;
+    }
+
+    /**
+     * @param intereses the intereses to set
+     */
+    public void setIntereses(double intereses) {
+        this.intereses = intereses;
     }
 }

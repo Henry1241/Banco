@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import mx.itson.banco.entidades.EstadoCuenta;
 import mx.itson.banco.entidades.Movimiento;
 import mx.itson.banco.enumeradores.TipoMovimiento;
 
@@ -23,13 +24,17 @@ public class MovimientoDAO {
        try{
            Connection conexion = Conexion.obtener();
            Statement statement = conexion.createStatement();
-           ResultSet rs = statement.executeQuery("SELECT * from vw_artista");
+           ResultSet rs = statement.executeQuery("SELECT * from movimiento");
            while(rs.next()){
                Movimiento m = new Movimiento();
+               TipoMovimiento t = TipoMovimiento.ABONO;
+               List<EstadoCuenta> cuentas = new ArrayList<>();
                m.setId(rs.getInt(1));
                m.setDescripcion(rs.getString(2));
-               m.setFecha(rs.getDate(3));
-               m.setTipo(TipoMovimiento.valueOf(""));
+               m.setCargo(rs.getDouble(3));
+               m.setFecha(rs.getDate(4));
+               m.setTipo(t);
+               m.setIntereses(rs.getDouble(7));
 
                movimientos.add(m);
                
