@@ -15,7 +15,7 @@ import mx.itson.banco.persistencias.EstadoCuentaDAO;
 import mx.itson.banco.persistencias.TarjetaHabienteDAO;
 
 /**
- *
+ * Interfaz de usuario que muestra una tabla ordenada del estado de cuenta
  * @author Enrique Gonzales Leyva
  *         Jesus Alexis Martan Gallardo
  *         Xylan Rodriguez Robles

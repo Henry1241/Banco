@@ -19,7 +19,7 @@ import mx.itson.banco.persistencias.EstadoCuentaDAO;
 import mx.itson.banco.persistencias.MovimientoDAO;
 
 /**
- *
+ * Formulario que permite agregar un nuevo movimiento a una cuenta
  * @author Enrique Gonzales Leyva
  *         Jesus Alexis Martan Gallardo
  *         Xylan Rodriguez Robles

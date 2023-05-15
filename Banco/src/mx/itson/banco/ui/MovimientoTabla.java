@@ -13,7 +13,7 @@ import mx.itson.banco.persistencias.EstadoCuentaDAO;
 import mx.itson.banco.persistencias.MovimientoDAO;
 
 /**
- *
+ *  Interfaz de usuario que despliega una table de movimientos bancarios
  * @author Enrique Gonzales Leyva
  *         Jesus Alexis Martan Gallardo
  *         Xylan Rodriguez Robles

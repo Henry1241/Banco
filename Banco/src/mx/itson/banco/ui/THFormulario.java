@@ -6,7 +6,7 @@
 package mx.itson.banco.ui;
 
 /**
- *
+ *  Formulario que permite agregar mas usuarios de tarjetas
  * @author Enrique Gonzales Leyva
  *         Jesus Alexis Martan Gallardo
  *         Xylan Rodriguez Robles
