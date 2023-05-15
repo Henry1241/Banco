@@ -180,6 +180,19 @@ public class EstadoTabla extends javax.swing.JFrame {
                  t.getDireccion()
              });
      }
+     public void total(){
+            double t = 0;
+            double p = 0;
+            if (tblEstado.getRowCount() > 0){
+                for (int i = 0; i < tblEstado.getRowCount(); i++) {
+                    p = Double.parseDouble(tblEstado.getValueAt(i, 8).toString());
+                    t += p;
+                }
+                               
+            }else{
+                
+            }
+}           
     /**
      * @param args the command line arguments
      */
