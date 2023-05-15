@@ -14,10 +14,17 @@ import mx.itson.banco.entidades.Compra;
 import mx.itson.banco.enumeradores.TipoMovimiento;
 
 /**
- *
- * @author Xylan
+ *  Clase de persistencia para la obtencion de datos de las compras
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
+
 public class CompraDAO {
+    /**
+     * Genera una lista de compras para su despliegue en la interfaz
+     * @return la lista de compras generada
+     */
      public static List<Compra> obtenerTodos(){
        List<Compra> compras = new ArrayList<>();
        try{

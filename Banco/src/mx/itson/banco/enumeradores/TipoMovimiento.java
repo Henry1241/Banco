@@ -6,8 +6,10 @@
 package mx.itson.banco.enumeradores;
 
 /**
- *
- * @author enri0
+ *  Enumerador de tipos de movimiento
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public enum TipoMovimiento {
     

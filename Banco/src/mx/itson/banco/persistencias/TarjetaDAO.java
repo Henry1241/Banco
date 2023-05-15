@@ -13,11 +13,17 @@ import java.util.List;
 import mx.itson.banco.entidades.Tarjeta;
 
 /**
- *
- * @author Xylan
+ *  Clase de persistencia para la obtencion de datos de las tarjetas
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class TarjetaDAO {
-           public static List<Tarjeta> obtenerTodos(){
+     /**
+     * Genera una lista de tarjetas para su despliegue en la interfaz
+     * @return la lista de tarjetas generada
+     */
+       public static List<Tarjeta> obtenerTodos(){
        List<Tarjeta> tarjetas = new ArrayList<>();
        try{
            Connection conexion = Conexion.obtener();

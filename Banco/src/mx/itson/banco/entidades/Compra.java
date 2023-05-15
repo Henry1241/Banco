@@ -9,8 +9,10 @@ import java.util.Date;
 import mx.itson.banco.enumeradores.TipoMovimiento;
 
 /**
- *
- * @author enri0
+ * Entidad de clase de compra
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class Compra {
  

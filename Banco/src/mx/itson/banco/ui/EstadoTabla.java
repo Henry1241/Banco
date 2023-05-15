@@ -16,7 +16,9 @@ import mx.itson.banco.persistencias.TarjetaHabienteDAO;
 
 /**
  *
- * @author enri0
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class EstadoTabla extends javax.swing.JFrame {
 

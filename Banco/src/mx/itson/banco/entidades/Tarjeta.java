@@ -8,8 +8,10 @@ package mx.itson.banco.entidades;
 import java.util.Date;
 
 /**
- *
- * @author enri0
+ * Entidad de clase de las tarjetas
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class Tarjeta {
     

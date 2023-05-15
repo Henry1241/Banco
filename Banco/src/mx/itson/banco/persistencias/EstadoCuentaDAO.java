@@ -13,12 +13,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 /**
- *
- * @author Xylan
+ *  Clase de persistencia para la obtencion de los estados de cuenta
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class EstadoCuentaDAO {
     private Connection conexion; 
-    
+    /**
+     * Obtiene los datos ordenados usando los identificadores
+     * @param id Identificador del estado de cuenta
+     * @return los articulos obtenidos ordenados por el id
+     */
     public static EstadoCuenta obtenerPorId(int id) {
         EstadoCuenta estado = new EstadoCuenta();
         try {
@@ -37,7 +43,10 @@ public class EstadoCuentaDAO {
         }
         return null;
     }
-
+     /**
+     * Genera una lista del estado de cuenta para su despliegue en la interfaz
+     * @return la lista de estado de cuenta generada
+     */
     public static List<EstadoCuenta> obtenerTodos() {
         List<EstadoCuenta> estadoCuentas = new ArrayList<>();
         try {
@@ -63,7 +72,10 @@ public class EstadoCuentaDAO {
         }
         return estadoCuentas;
     }
-
+    /**
+     * Funcion guardar que permite almacenar la informacion de datos 
+     * @param estadoCuenta El estado de cuenta
+     */
     public void guardar(EstadoCuenta estadoCuenta) {
         String query = "INSERT INTO estado_cuenta (id, saldo_anterior, abono, cargo, inicio_periodo, fecha_corte, saldo_final) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conexion.prepareStatement(query)) {

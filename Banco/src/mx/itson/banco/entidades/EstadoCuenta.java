@@ -9,8 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
- * @author enri0
+ * Entidad de clase del estado de cuenta
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class EstadoCuenta {
     

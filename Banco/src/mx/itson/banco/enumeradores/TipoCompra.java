@@ -6,8 +6,10 @@
 package mx.itson.banco.enumeradores;
 
 /**
- *
- * @author enri0
+ *  Enumerador de tipos de compra
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public enum TipoCompra {
     

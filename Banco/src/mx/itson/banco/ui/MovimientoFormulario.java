@@ -20,7 +20,9 @@ import mx.itson.banco.persistencias.MovimientoDAO;
 
 /**
  *
- * @author enri0
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class MovimientoFormulario extends javax.swing.JDialog {
 

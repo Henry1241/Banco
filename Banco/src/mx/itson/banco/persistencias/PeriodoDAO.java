@@ -14,11 +14,17 @@ import mx.itson.banco.entidades.Periodo;
 
 
 /**
- *
- * @author Xylan
+ *  Clase de persistencia para la obtencion de datos de los periodos de pago
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class PeriodoDAO {
-         public static List<Periodo> obtenerTodos(){
+     /**
+     * Genera una lista de periodos de pago para su despliegue en la interfaz
+     * @return la lista de periodos de pago generada
+     */
+       public static List<Periodo> obtenerTodos(){
        List<Periodo> periodos = new ArrayList<>();
        try{
            Connection conexion = Conexion.obtener();

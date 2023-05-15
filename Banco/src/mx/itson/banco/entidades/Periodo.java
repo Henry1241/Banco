@@ -6,8 +6,10 @@
 package mx.itson.banco.entidades;
 
 /**
- *
- * @author enri0
+ *  Entidad de clase de los periodos
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class Periodo {
     

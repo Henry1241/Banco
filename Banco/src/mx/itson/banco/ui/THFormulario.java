@@ -7,7 +7,9 @@ package mx.itson.banco.ui;
 
 /**
  *
- * @author enri0
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class THFormulario extends javax.swing.JDialog {
 

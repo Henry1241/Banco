@@ -17,11 +17,17 @@ import mx.itson.banco.entidades.Movimiento;
 import mx.itson.banco.enumeradores.TipoMovimiento;
 
 /**
- *
- * @author Xylan
+ * Clase de persistencia para la obtencion de datos de los movimientos de cuenta
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class MovimientoDAO {
-
+    
+    /**
+     * Genera una lista de movimientos para su despliegue en la interfaz
+     * @return la lista de movimientos generada
+     */
     public static List<Movimiento> obtenerTodos() {
         List<Movimiento> movimientos = new ArrayList<>();
         try {
@@ -47,7 +53,15 @@ public class MovimientoDAO {
         }
         return movimientos;
     }
-
+    /**
+     * Funcion guardar que permite almacenar la informacion de datos 
+     * @param descripcion La descripcion del movimiento
+     * @param cargo La cantidad de dinero cargada en el movimiento
+     * @param fecha La fecha de realizacion del movimiento
+     * @param cuenta La cuenta que efectuo el movimiento bancario
+     * @param tipoMovimiento El tipo de movimiento efectuado
+     * @return El resultado de la funcion guardar
+     */
     public static boolean guardar(String descripcion, double cargo, Date fecha, EstadoCuenta cuenta, TipoMovimiento tipoMovimiento) {
         boolean resultado = false;
         try {

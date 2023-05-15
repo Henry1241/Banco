@@ -10,8 +10,10 @@ import java.util.List;
 import mx.itson.banco.enumeradores.TipoMovimiento;
 
 /**
- *
- * @author enri0
+ *  Entidad de clase de los movimientos bancarios
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class Movimiento {
     

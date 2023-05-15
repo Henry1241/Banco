@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- *
- * @author enri0
+ *  Clase de persistencia que efectua una conexion con la base de datos
+ * @author Enrique Gonzales Leyva
+ *         Jesus Alexis Martan Gallardo
+ *         Xylan Rodriguez Robles
  */
 public class Conexion {
  
