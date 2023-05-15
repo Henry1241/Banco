@@ -196,4 +196,11 @@ public class EstadoCuenta {
     public void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
+    public String d(){
+        
+        return inicioPeriodo.toString();
+        
+    }
+       
+    
 }

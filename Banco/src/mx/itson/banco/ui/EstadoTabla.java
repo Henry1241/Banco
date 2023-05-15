@@ -5,9 +5,7 @@
  */
 package mx.itson.banco.ui;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.banco.entidades.EstadoCuenta;
 import mx.itson.banco.entidades.TarjetaHabiente;
@@ -45,6 +43,8 @@ public class EstadoTabla extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cmbPeriodo = new javax.swing.JComboBox<>();
         btnConsulta = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnMovimientos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -91,21 +91,35 @@ public class EstadoTabla extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Movimientos");
+
+        btnMovimientos.setText("Movimientos");
+        btnMovimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovimientosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConsulta)))
+                        .addComponent(btnConsulta))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMovimientos)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -116,11 +130,15 @@ public class EstadoTabla extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsulta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(btnMovimientos))
+                .addGap(32, 32, 32))
         );
 
         cmbPeriodo.getAccessibleContext().setAccessibleName("");
@@ -143,6 +161,17 @@ public class EstadoTabla extends javax.swing.JFrame {
         // TODO add your handling code here:
         cargarFechas();        
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovimientosActionPerformed
+        // TODO add your handling code here:
+        int renglon = tblEstado.getSelectedRow();
+
+        // Se abre la tabla de movimientos y se le pasa el id como parámetro
+        MovimientoTabla tabla = new MovimientoTabla();
+        tabla.setVisible(true);
+
+        cargar();
+    }//GEN-LAST:event_btnMovimientosActionPerformed
     public void cargar(){
         List<EstadoCuenta> estado = EstadoCuentaDAO.obtenerTodos();
         DefaultTableModel model = (DefaultTableModel) tblEstado.getModel();
@@ -157,13 +186,13 @@ public class EstadoTabla extends javax.swing.JFrame {
                 e.getInicioPeriodo(),
                 e.getFechaCorte(),
                 e.getFechaPago(),
-                e.getSaldoFinal(),
+                e.getSaldoFinal()
             });
             
         }
     }
      public void cargarFechas() {
-        List<EstadoCuenta> inicio = (List<EstadoCuenta>) EstadoCuentaDAO.obtenerTodos();
+        List<EstadoCuenta> inicio = EstadoCuentaDAO.obtenerTodos();
         for(EstadoCuenta i: inicio){
             cmbPeriodo.addItem(i);
   }
@@ -232,8 +261,10 @@ public class EstadoTabla extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsulta;
+    private javax.swing.JButton btnMovimientos;
     private javax.swing.JComboBox<EstadoCuenta> cmbPeriodo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblEstado;
