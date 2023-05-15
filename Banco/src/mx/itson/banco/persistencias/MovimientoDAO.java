@@ -43,7 +43,6 @@ public class MovimientoDAO {
                 m.setCargo(rs.getDouble(3));
                 m.setFecha(rs.getDate(4));
                 m.setTipo(t);
-                m.setIntereses(rs.getDouble(7));
 
                 movimientos.add(m);
 
