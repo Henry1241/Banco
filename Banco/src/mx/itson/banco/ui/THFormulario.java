@@ -5,6 +5,15 @@
  */
 package mx.itson.banco.ui;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import mx.itson.banco.persistencias.TarjetaHabienteDAO;
+
 /**
  *  Formulario que permite agregar mas usuarios de tarjetas
  * @author Enrique Gonzales Leyva
@@ -34,7 +43,7 @@ public class THFormulario extends javax.swing.JDialog {
         btnCerrar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -62,11 +71,11 @@ public class THFormulario extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Descripción");
+        jLabel1.setText("Nombre");
 
-        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescripcionActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
 
@@ -111,7 +120,7 @@ public class THFormulario extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +141,7 @@ public class THFormulario extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -170,7 +179,29 @@ public class THFormulario extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        
+        try {
+            // TODO add your handling code here:
+            String nombre = txtNombre.getText();
+            Date fecha = new SimpleDateFormat("yyyy MM, d", Locale.ENGLISH).parse(txtFecha.getText());
+            String curp = txtCurp.getText();
+            String rfc = txtRFC.getText();
+            String direccion = txtDireccion.getText();
+            
+            boolean resultado = this.id == 0 ?
+                    
+                    TarjetaHabienteDAO.guardar(nombre, fecha, curp, rfc, direccion):
+                    TarjetaHabienteDAO.editar(id, nombre, fecha, curp, rfc, direccion);
+            
+            
+            
+            if(resultado){
+                JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            }else
+                JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ParseException ex) {
+            Logger.getLogger(THFormulario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
@@ -181,9 +212,9 @@ public class THFormulario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
-    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescripcionActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,9 +270,9 @@ public class THFormulario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtCurp;
-    private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRFC;
     // End of variables declaration//GEN-END:variables
 }

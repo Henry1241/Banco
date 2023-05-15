@@ -6,9 +6,11 @@
 package mx.itson.banco.persistencias;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import mx.itson.banco.entidades.TarjetaHabiente;
 
@@ -50,4 +52,47 @@ public class TarjetaHabienteDAO {
        }
        return thabientes;
     }  
+       public static boolean guardar(String nombre, Date fechaNacimiento, String curp, String rfc, String direccion) {
+        boolean resultado = false;
+        try {
+            Connection conexion = Conexion.obtener();
+            String consulta = "INSERT INTO tarjeta_habiente(nombre, fechaNacimiento, curp, rfc, direccion) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, nombre);
+            statement.setDate(2, (java.sql.Date) fechaNacimiento);
+            statement.setString(3, curp);
+            statement.setString(4, rfc);
+            statement.setString(5, direccion);
+            statement.execute();
+            resultado = statement.getUpdateCount() == 1;
+            conexion.close();
+
+        } catch (Exception ex) {
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+        }
+        return resultado;
+}
+        public static boolean editar(int id, String nombre, Date fechaNacimiento, String curp, String rfc, String direccion){
+            boolean resultado = false;
+        try {
+            Connection conexion = Conexion.obtener();
+            String consulta = "UPDATE tarjeta_habiente SET nombre = ?, fechaNacimiento = ?, curp = ?, rfc = ?, direccion = ? WHERE id = ?";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, nombre);
+            statement.setDate(2, (java.sql.Date) fechaNacimiento);
+            statement.setString(3, curp);
+            statement.setString(4, rfc);
+            statement.setString(5, direccion);
+            statement.setInt(5, id);
+            
+            statement.execute();
+            
+            resultado = statement.getUpdateCount() == 1;
+            conexion.close();
+            } catch (Exception ex) {
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+            
+        }
+           return false;
+}
 }
