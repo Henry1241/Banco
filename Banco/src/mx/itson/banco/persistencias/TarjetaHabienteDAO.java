@@ -52,6 +52,15 @@ public class TarjetaHabienteDAO {
        }
        return thabientes;
     }  
+       /**
+        * Funcion guardar que permite almacenar la informacion de datos 
+        * @param nombre nombre del usuario de la tarjeta
+        * @param fechaNacimiento Fecha de nacimiento del usuario de la tarjeta
+        * @param curp curp del usuario de la tarjeta
+        * @param rfc Registro federal de contribuyente del usuario de la tarjeta
+        * @param direccion Direccion al domicilio del usuario de la tarjeta
+        * @return El resultado de la funcion guardar
+        */
        public static boolean guardar(String nombre, Date fechaNacimiento, String curp, String rfc, String direccion) {
         boolean resultado = false;
         try {
@@ -72,6 +81,16 @@ public class TarjetaHabienteDAO {
         }
         return resultado;
 }
+       /**
+        * Funcion para editar una lista de datos ya almacenada en la base de datos
+        * @param id Identificador del usuario de la tarjeta
+        * @param nombre nombre del usuario de la tarjeta
+        * @param fechaNacimiento Fecha de nacimiento del usuario de la tarjeta
+        * @param curp curp del usuario de la tarjeta
+        * @param rfc Registro federal de contribuyente del usuario de la tarjeta
+        * @param direccion Direccion al domicilio del usuario de la tarjeta
+        * @return El resultado de la funcion de edicion
+        */
         public static boolean editar(int id, String nombre, Date fechaNacimiento, String curp, String rfc, String direccion){
             boolean resultado = false;
         try {
