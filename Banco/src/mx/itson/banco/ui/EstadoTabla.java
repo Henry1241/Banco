@@ -5,10 +5,14 @@
  */
 package mx.itson.banco.ui;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.banco.entidades.EstadoCuenta;
+import mx.itson.banco.entidades.TarjetaHabiente;
 import mx.itson.banco.persistencias.EstadoCuentaDAO;
+import mx.itson.banco.persistencias.TarjetaHabienteDAO;
 
 /**
  *
@@ -89,22 +93,18 @@ public class EstadoTabla extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnConsulta)))
-                        .addContainerGap())))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnConsulta)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,12 +132,14 @@ public class EstadoTabla extends javax.swing.JFrame {
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
         // TODO add your handling code here:
+        cargarCliente();
         cargar();
+        tblEstado.removeColumn(tblEstado.getColumnModel().getColumn(0));
     }//GEN-LAST:event_btnConsultaActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        cargarFechas();
+        cargarFechas();        
     }//GEN-LAST:event_formWindowOpened
     public void cargar(){
         List<EstadoCuenta> estado = EstadoCuentaDAO.obtenerTodos();
@@ -160,10 +162,25 @@ public class EstadoTabla extends javax.swing.JFrame {
     }
      public void cargarFechas() {
         List<EstadoCuenta> inicio = (List<EstadoCuenta>) EstadoCuentaDAO.obtenerTodos();
-        for(EstadoCuenta f: inicio){
-            cmbPeriodo.addItem(f);
+        for(EstadoCuenta i: inicio){
+        i.getInicioPeriodo().toString();
+            cmbPeriodo.addItem(i);
   }
 }
+     public void cargarCliente(){
+         List<TarjetaHabiente> cliente = TarjetaHabienteDAO.obtenerTodos();
+         DefaultTableModel model = (DefaultTableModel) tblTarjetaH.getModel();
+         model.setRowCount(0);
+         for (TarjetaHabiente t : cliente)
+             model.addRow(new Object[]{
+                 t.getId(),
+                 t.getNombre(),
+                 t.getCorreo(),
+                 t.getCurp(),
+                 t.getRfc(),
+                 t.getDireccion()
+             });
+     }
     /**
      * @param args the command line arguments
      */
