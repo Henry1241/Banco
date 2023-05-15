@@ -197,8 +197,7 @@ public class EstadoCuenta {
         this.fechaPago = fechaPago;
     }
     public String d(){
-        
-        return inicioPeriodo.toString();
+        return this.d();
         
     }
        

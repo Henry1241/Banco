@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.banco.entidades.EstadoCuenta;
 import mx.itson.banco.entidades.Movimiento;
+import mx.itson.banco.entidades.Tarjeta;
 import mx.itson.banco.persistencias.EstadoCuentaDAO;
 import mx.itson.banco.persistencias.MovimientoDAO;
 
@@ -50,13 +51,13 @@ public class MovimientoTabla extends javax.swing.JFrame {
 
         tblMovimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "Descripcion", "Cargo", "Fecha", "Tipo de Movimiento", "Intereses"
+                "id", "Descripcion", "Cargo", "Fecha", "Tipo de Movimiento"
             }
         ));
         jScrollPane1.setViewportView(tblMovimiento);
@@ -124,6 +125,9 @@ public class MovimientoTabla extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnadirActionPerformed
 
     public void cargar() {
+        EstadoCuenta estado = new EstadoCuenta();
+        double intereses = 0;
+        Tarjeta interes = new Tarjeta();
         List<Movimiento> movimiento = MovimientoDAO.obtenerTodos();
         DefaultTableModel model = (DefaultTableModel) tblMovimiento.getModel();
         model.setRowCount(0);
@@ -134,12 +138,10 @@ public class MovimientoTabla extends javax.swing.JFrame {
                 m.getCargo(),
                 m.getFecha(),
                 m.getTipo(),
-                m.getIntereses()
-
+                intereses
             });
         }
     }
-
     /**
      * @param args the command line arguments
      */

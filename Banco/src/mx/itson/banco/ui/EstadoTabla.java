@@ -173,16 +173,22 @@ public class EstadoTabla extends javax.swing.JFrame {
         cargar();
     }//GEN-LAST:event_btnMovimientosActionPerformed
     public void cargar(){
+        double intereses = 0;
         List<EstadoCuenta> estado = EstadoCuentaDAO.obtenerTodos();
         DefaultTableModel model = (DefaultTableModel) tblEstado.getModel();
-        EstadoCuenta inicio = (EstadoCuenta)cmbPeriodo.getSelectedItem();
+        int linea = cmbPeriodo.getSelectedIndex();
         model.setRowCount(0);
         for (EstadoCuenta e : estado) {
+            if(e.getFechaCorte().before(e.getFechaPago())){
+            intereses = e.getCargo() * 0.3884;
+        }else if(e.getFechaPago().after(e.getFechaCorte())){
+                intereses = e.getCargo() + 0;
+            }
             model.addRow(new Object[]{
                 e.getId(),
                 e.getSaldoAnterior(),
                 e.getAbono(),
-                e.getCargo(),
+                e.getCargo() + intereses,
                 e.getInicioPeriodo(),
                 e.getFechaCorte(),
                 e.getFechaPago(),
