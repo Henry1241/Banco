@@ -78,6 +78,11 @@ public class MovimientoTabla extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar");
 
         btnAnadir.setText("Añadir");
+        btnAnadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnadirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,6 +133,14 @@ public class MovimientoTabla extends javax.swing.JFrame {
         cargar();
         tblMovimiento.removeColumn(tblMovimiento.getColumnModel().getColumn(0));
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
+        // TODO add your handling code here:
+        MovimientoFormulario formulario = new MovimientoFormulario(this, true, 0); 
+        formulario.setVisible(true);
+        
+        cargar();
+    }//GEN-LAST:event_btnAnadirActionPerformed
 
     public void cargar() {
         List<Movimiento> movimiento = MovimientoDAO.obtenerTodos();
