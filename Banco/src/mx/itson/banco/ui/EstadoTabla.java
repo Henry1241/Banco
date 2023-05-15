@@ -5,6 +5,8 @@
  */
 package mx.itson.banco.ui;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.banco.entidades.EstadoCuenta;
@@ -176,7 +178,10 @@ public class EstadoTabla extends javax.swing.JFrame {
         double intereses = 0;
         List<EstadoCuenta> estado = EstadoCuentaDAO.obtenerTodos();
         DefaultTableModel model = (DefaultTableModel) tblEstado.getModel();
-        int linea = cmbPeriodo.getSelectedIndex();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 1);
+        cal.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         model.setRowCount(0);
         for (EstadoCuenta e : estado) {
             if(e.getFechaCorte().before(e.getFechaPago())){
